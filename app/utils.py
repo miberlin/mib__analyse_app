@@ -153,7 +153,7 @@ def missing_values_plot(df):
 
 # For dates: Dates always have to be imported sorted.
 # Merge different courses
-@streamlit.cache
+#@streamlit.cache
 def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     # Student data
     student_data = df[cfg['plots']['students']['fields']]
@@ -230,7 +230,6 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
     if exams_checkbox:
         ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
         ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
-        streamlit.write('Hallo')
     if absent_checkbox:
         ax.bar(nicht_dabei_idx, height, alpha=1, color='white', width=1)
         ax.bar(nicht_dabei_idx, height, alpha=.2, color='red', width=1,label='Nicht anwesend')
@@ -420,7 +419,7 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
 #     student_data = student_data.set_index('Datum-df')
 #     return student_data
 
-@streamlit.cache
+#@streamlit.cache
 def kurs_plot_data_options(df, df_pk,cfg,kurs_id,start_date,end_date):
     # Student data
     kurs_data = df[cfg['plots']['kurse']['fields']]
