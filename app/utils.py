@@ -186,6 +186,7 @@ def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     nicht_dabei_idx = numpy.argwhere(nicht_dabei_idx == 0).flatten()
     height = 100 * numpy.ones(len(nicht_dabei_idx))
 
+    streamlit.dataframe(values_name)
     pk_idx = numpy.array(values_name['Art des Termin'])
     pk_idx = numpy.argwhere(pk_idx == 'PK').flatten()
     #pk_results = values_name[pk_idx]
