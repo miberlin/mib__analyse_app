@@ -186,7 +186,6 @@ def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     nicht_dabei_idx = numpy.argwhere(nicht_dabei_idx == 0).flatten()
     height = 100 * numpy.ones(len(nicht_dabei_idx))
 
-    streamlit.dataframe(values_name)
     pk_idx = numpy.array(values_name['Art des Termin'])
     pk_idx = numpy.argwhere(pk_idx == 'PK').flatten()
     #pk_results = values_name[pk_idx]
@@ -229,11 +228,8 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
     #     # plots_options_calendar = streamlit.checkbox('Calendar view')
     # Selected lines to plot
     if exams_checkbox:
-        streamlit.dataframe(pk_idx)
-        streamlit.dataframe(pk_actual_points)
-        streamlit.dataframe(pk_guessed_points)
-        ## ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
-        ## ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
+        ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
+        ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
         streamlit.write('Hallo')
     if absent_checkbox:
         ax.bar(nicht_dabei_idx, height, alpha=1, color='white', width=1)
