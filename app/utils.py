@@ -230,6 +230,8 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
     #     plots_options_radio = streamlit.radio(options = ("Normal", "Interpolated"))
     #     # plots_options_calendar = streamlit.checkbox('Calendar view')
 
+    streamlit.dataframe(pk_idx)
+    streamlit.dataframe(pk_actual_points)
     # Selected lines to plot
     if exams_checkbox:
         #ax.bar(pk_idx, numpy.ones(len(pk_idx)) * 100, color='white', edgecolor='green', zorder=-1)
