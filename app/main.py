@@ -50,7 +50,7 @@ def main():
         # Tables
 
     else:
-        streamlit.markdown("# Studenten Deten")
+        streamlit.markdown("# Studenten Daten")
 
         # Streamlit visual
         streamlit.write(f'Hier stehen alle infos zu die Studenten aus dem {kurs_selectbox}')
