@@ -471,6 +471,7 @@ def kurs_plot_data_options(df, df_pk,cfg,kurs_id,start_date,end_date):
         index = pk_data['PK-Index'][idx]
         rows = pk_result_data.index[pk_result_data['Datum-df']==datum].tolist()
         pk_result_data['PK-Index'][rows]=index
+
     pk_result_data['Erreicht Prozentual'] = pk_result_data['Erreicht Prozentual']*100
     pk_data = pk_result_data.reset_index()
     pk_data['PK-Index']= pk_data['PK-Index'].astype('int')

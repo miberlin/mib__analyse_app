@@ -44,7 +44,8 @@ def main():
                                                  max_value=max_date_kurs, value=max_date_kurs)
 
         # plot student info
-        plot_kurs_data(df_termine, df_pk_stud, cfg, kurs_selectbox, start_date_kurs, end_date_kurs)
+
+        plot_kurs_data(df_termine, df_pk_stud, cfg, kurs_selectbox,  start_date_kurs, end_date_kurs)
 
         # Tables
 
