@@ -162,9 +162,6 @@ def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     pk_results_data = df_pk[cfg['plots']['students']['pk_results']]
 
     all_data = pandas.concat([student_data,pk_results_data])
-    streamlit.dataframe(all_data)
-    streamlit.dataframe(pk_results_data)
-    streamlit.dataframe(student_data)
     all_data['Art des Termin'] = all_data['Art des Termin'].fillna('PK')
     values_name = all_data[all_data['MiB-ID']==student_id]
     values_name['Datum-df'] = pandas.to_datetime(values_name['Datum-df'], format='%d/%m/%y')
@@ -232,9 +229,12 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
     #     # plots_options_calendar = streamlit.checkbox('Calendar view')
     # Selected lines to plot
     if exams_checkbox:
+        streamlit.dataframe(pk_idx)
+        streamlit.dataframe(pk_actual_points)
+        streamlit.dataframe(pk_guessed_points)
         #ax.bar(pk_idx, numpy.ones(len(pk_idx)) * 100, color='white', edgecolor='green', zorder=-1)
-        ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
-        ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
+        #ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
+        #ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
         streamlit.write('Hallo')
     if absent_checkbox:
         ax.bar(nicht_dabei_idx, height, alpha=1, color='white', width=1)
