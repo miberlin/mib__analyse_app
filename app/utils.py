@@ -8,7 +8,6 @@ import matplotlib.pyplot
 import streamlit
 from scipy.interpolate import interp1d
 from datetime import datetime
-import os
 
 
 AIRTABLE_API_KEY = streamlit.secrets['AIRTABLE_API_KEY']
