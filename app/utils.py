@@ -193,7 +193,7 @@ def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     #pk_results = values_name[pk_idx]
     pk_actual_points = values_name['Erreicht Prozentual'].dropna() * 100
     pk_guessed_points = values_name['Geschätzt Prozentual'].dropna() * 100
-
+    streamlit.dataframe(values_name)
     return number_of_values, values_range, aufm, vers, fun, date, late_arrival, nicht_dabei_idx, height, pk_idx, pk_actual_points,pk_guessed_points
 
 
@@ -229,7 +229,7 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
     #     # Choose between interpolated or normal plots
     #     plots_options_radio = streamlit.radio(options = ("Normal", "Interpolated"))
     #     # plots_options_calendar = streamlit.checkbox('Calendar view')
-
+    streamlit.dataframe()
     streamlit.dataframe(pk_idx)
     streamlit.dataframe(pk_actual_points)
     # Selected lines to plot
