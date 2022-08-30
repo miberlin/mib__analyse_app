@@ -157,7 +157,6 @@ def missing_values_plot(df):
 def student_plot_data_options(df,df_pk,cfg,student_id,start_date,end_date):
     # Student data
     student_data = df[cfg['plots']['students']['fields']]
-    streamlit.dataframe(student_data)
     # Student data for exam results
     pk_results_data = df_pk[cfg['plots']['students']['pk_results']]
 
@@ -232,6 +231,8 @@ def plot_student_data(df,df_pk, cfg, student_id, start_date, end_date):
         streamlit.dataframe(pk_idx)
         streamlit.dataframe(pk_actual_points)
         streamlit.dataframe(pk_guessed_points)
+        ## ax.bar(pk_idx, pk_actual_points,width=0.6,alpha=.7,color='aqua',label='Erreichte Punkte')#, zorder=-1)
+        ## ax.bar(pk_idx, pk_guessed_points,width=0.6,alpha=0.7 ,fill=False,hatch='\\\\',label='Geschätzte Punkte')#, zorder=-1)  # '..'
         streamlit.write('Hallo')
     if absent_checkbox:
         ax.bar(nicht_dabei_idx, height, alpha=1, color='white', width=1)
