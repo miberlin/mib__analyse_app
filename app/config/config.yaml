@@ -172,6 +172,12 @@ plots:
       - Verständnis Mittel
       - Fun Mittel
       - Datum-df
+    pk_results:
+      - Erreicht Prozentual
+      - Geschätzt Prozentual
+      - PK-Name
+      - Datum-df
+      - MiB-Kurs-Name
 
 # --- Dashboard Setup ------------------------------------------------------------------------------------
 plot:
