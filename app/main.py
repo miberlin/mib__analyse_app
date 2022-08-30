@@ -1,7 +1,9 @@
-import streamlit
 
 from utils import *
 def main():
+    # Them  config streamlit
+    streamlit.set_page_config(layout='wide')
+
     # read the configuration file and initialize random generators
     cfg = read_config('/app/mib__analyse_app/app/config/config.yaml')
 
@@ -28,7 +30,7 @@ def main():
     # Decide which elements are going to be shown on the main page
     if info_selection == "Kurs Info":
         # Courses page
-        streamlit.markdown("# Kurs data")
+        streamlit.markdown("# Kurs Daten")
 
         # Streamlit visual
         streamlit.write(f'Hier sind die Infos zum {kurs_selectbox}')
@@ -42,12 +44,12 @@ def main():
                                                  max_value=max_date_kurs, value=max_date_kurs)
 
         # plot student info
-        plot_kurs_data(df_termine, cfg, kurs_selectbox, start_date_kurs, end_date_kurs)
+        plot_kurs_data(df_termine, df_pk_stud, cfg, kurs_selectbox, start_date_kurs, end_date_kurs)
 
         # Tables
 
     else:
-        streamlit.markdown("# Students data")
+        streamlit.markdown("# Studenten Deten")
 
         # Streamlit visual
         streamlit.write(f'Hier stehen alle infos zu die Studenten aus dem {kurs_selectbox}')
@@ -70,15 +72,15 @@ def main():
         mib_id = students
         plot_student_data(df_studentenxtermine,df_pk_stud, cfg, mib_id, start_date, end_date)
 
-        # Styling
-        @streamlit.cache
-        def highlight_not_present(s):
-            return ['background-color: '] * len(s) if s.Anwesenheit else ['background-color: rgba(255,0,0,.2)'] * len(s)
-
-        streamlit.write('Hier ist die Student Data als eine Tabelle')
-        student_table = student_data_table(all_dates_students, mib_id, start_date, end_date)
-        student_table = student_table.style.hide_index().apply(highlight_not_present, axis=1)
-        streamlit.dataframe(student_table)
+        # # Styling
+        # @streamlit.cache
+        # def highlight_not_present(s):
+        #     return ['background-color: '] * len(s) if s.Anwesenheit else ['background-color: rgba(255,0,0,.2)'] * len(s)
+        #
+        # streamlit.write('Hier ist die Student Data als eine Tabelle')
+        # student_table = student_data_table(all_dates_students, mib_id, start_date, end_date)
+        # student_table = student_table.style.hide_index().apply(highlight_not_present, axis=1)
+        # streamlit.dataframe(student_table)
 
 
 if __name__ == "__main__":
