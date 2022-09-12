@@ -12,13 +12,13 @@ def main():
     # Kurs Info
     # Kurs dataframe
     all_dates_kurse = df_termine[cfg['plots']['kurse']['fields']]
-    #all_dates_kurse = all_dates_kurse[all_dates_kurse['Art des Termins'] != 'PK']
 
     # All courses
     all_courses_names = df_termine['MiB-Kurs-Name'].unique()
 
     # Options to select o sidebar
     kurs_selectbox = streamlit.sidebar.selectbox("Wählt kurs", all_courses_names)
+    kurs_id = kurs_selectbox
     # Select value range for courses
     course_dates = all_dates_kurse[all_dates_kurse['MiB-Kurs-Name'] == kurs_selectbox]
     course_dates = course_dates['Datum-df']
@@ -32,7 +32,7 @@ def main():
         streamlit.markdown("# Kurs Daten")
 
         # Streamlit visual
-        streamlit.write(f'Hier sind die Infos zum {kurs_selectbox}')
+        streamlit.write(f'Hier sind die Infos zum {kurs_id}')
 
         col_date_1, col_date_2 = streamlit.columns(2)
         with col_date_1:
@@ -44,7 +44,7 @@ def main():
 
         # plot student info
 
-        plot_kurs_data(df_termine, df_pk_stud, cfg, kurs_selectbox,  start_date_kurs, end_date_kurs)
+        plot_kurs_data(df_termine, df_pk_stud, cfg, kurs_id,  start_date_kurs, end_date_kurs)
 
         # Tables
 
@@ -52,12 +52,12 @@ def main():
         streamlit.markdown("# Studenten Daten")
 
         # Streamlit visual
-        streamlit.write(f'Hier stehen alle infos zu die Studenten aus dem {kurs_selectbox}')
+        streamlit.write(f'Hier stehen alle infos zu die Studenten aus dem {kurs_id}')
 
         # Student Info
         # Student dataframe
         all_dates_students = df_studentenxtermine[cfg['plots']['students']['fields']]
-        all_dates_students = all_dates_students[all_dates_students['MiB-Kurs-Name'] == kurs_selectbox]
+        all_dates_students = all_dates_students[all_dates_students['MiB-Kurs-Name'] == kurs_id]
 
         col_date_1, col_date_2 = streamlit.columns(2)
         with col_date_1:
@@ -71,16 +71,6 @@ def main():
         students = streamlit.selectbox('Student ID', all_dates_students['MiB-ID'].unique())
         mib_id = students
         plot_student_data(df_studentenxtermine,df_pk_stud, cfg, mib_id, start_date, end_date)
-
-        # # Styling
-        # @streamlit.cache
-        # def highlight_not_present(s):
-        #     return ['background-color: '] * len(s) if s.Anwesenheit else ['background-color: rgba(255,0,0,.2)'] * len(s)
-        #
-        # streamlit.write('Hier ist die Student Data als eine Tabelle')
-        # student_table = student_data_table(all_dates_students, mib_id, start_date, end_date)
-        # student_table = student_table.style.hide_index().apply(highlight_not_present, axis=1)
-        # streamlit.dataframe(student_table)
 
 
 if __name__ == "__main__":
